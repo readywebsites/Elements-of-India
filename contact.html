@@ -13,7 +13,7 @@
 		<meta name="msapplication-navbutton-color" content="#151515">
 		<!-- iOS Safari -->
 		<meta name="apple-mobile-web-app-status-bar-style" content="#151515">
-		<title>Apache-Business-Consulting HTML Template</title>
+		<title>Import-Export Solutions | Connecting India and the UK</title>
 		<!-- Favicon -->
 		<link rel="icon" type="image/png" sizes="56x56" href="images/fav-icon/icon.png">
 		<!-- Main style sheet -->
@@ -23,25 +23,32 @@
 		<!-- Theme-Color css -->
 		<link rel="stylesheet" id="jssDefault" href="css/color.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+       
+		 <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
 
+    <script>
+        function initMap() {
+            var location = { lat: 40.712776, lng: -74.005974 }; // Replace with your location
+            var map = new google.maps.Map(document.querySelector('.map-canvas'), {
+                zoom: 15,
+                center: location
+            });
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
 
-		<!-- Fix Internet Explorer ______________________________________-->
-		<!--[if lt IE 9]>
-			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-			<script src="vendor/html5shiv.js"></script>
-			<script src="vendor/respond.js"></script>
-		<![endif]-->	
+        // Initialize the map after the page loads
+        window.onload = initMap;
+    </script>
 	</head>
 
 	<body>
 		<div class="main-page-wrapper">
 
-			<!-- ===================================================
-				Loading Transition
-			==================================================== -->
-			<div id="loader-wrapper">
-				<div id="loader"></div>
-			</div>
+			
 
 			<!-- ==================== Style Switcher ==================== -->
 			<div class="switcher">
@@ -138,7 +145,7 @@
 				Theme Inner Banner
 			============================================== 
 			-->
-			<div class="theme-inner-banner section-spacing" style="background: url(images/home/inner-banner-5.jpg) no-repeat center; background-size:cover;">
+			<div class="theme-inner-banner section-spacing" style="background: url(images/home/inner-banner-5.png) no-repeat center; background-size:cover;">
 				<div class="overlay">
 					<div class="container">
 						<h2 class="title">Contact</h2>
@@ -212,14 +219,9 @@
 			</div> <!-- /.contact-us-page -->
 
 
-			<!--
-			=====================================================
-				Google Map
-			=====================================================
-			-->
-			<!-- Google Map -->
-			<div class="google-map"><div class="map-canvas"></div></div>
-			
+			<div class="google-map">
+				<div class="map-canvas" style="height: 400px; width: 100%;"></div> <!-- Set the height and width -->
+			</div>
 
 
 
