@@ -22,44 +22,24 @@
 		<link rel="stylesheet" type="text/css" href="css/responsive.css">
 		<!-- Theme-Color css -->
 		<link rel="stylesheet" id="jssDefault" href="css/color.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-       
-		 <!-- Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
-    <style>
-        .image-container {
-          display: flex;
-          justify-content: center; /* Centers the images horizontally */
-          gap: 30px; /* Adds space between the images */
-        }
-        .image-container img {
-          width: 300px; /* Set the width for all images */
-          height: 300px; /* Set the height for all images */
-          object-fit: cover; /* Ensures images maintain aspect ratio */
-        }
-    </style>
-    <script>
-        function initMap() {
-            var location = { lat: 40.712776, lng: -74.005974 }; // Replace with your location
-            var map = new google.maps.Map(document.querySelector('.map-canvas'), {
-                zoom: 15,
-                center: location
-            });
-            var marker = new google.maps.Marker({
-                position: location,
-                map: map
-            });
-        }
 
-        // Initialize the map after the page loads
-        window.onload = initMap;
-    </script>
+		<!-- Fix Internet Explorer ______________________________________-->
+		<!--[if lt IE 9]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="vendor/html5shiv.js"></script>
+			<script src="vendor/respond.js"></script>
+		<![endif]-->	
 	</head>
 
 	<body>
 		<div class="main-page-wrapper">
 
-			
+			<!-- ===================================================
+				Loading Transition
+			==================================================== -->
+			<div id="loader-wrapper">
+				<div id="loader"></div>
+			</div>
 
 			<!-- ==================== Style Switcher ==================== -->
 			<div class="switcher">
@@ -131,13 +111,13 @@
 									<ul class="clearfix">
 										<li><a href="index.html">Home</a>
 										</li>
-										<li class="active"><a href="#">About</a>
+										<li><a href="#">About</a>
 											<ul class="dropdown">
 												<li><a href="about.html">About Us</a></li>
 												<li><a href="Why-India.html">Why India?</a></li>
 										   </ul>
 										</li>
-										<li><a href="About-Founder.html">About Founder</a></li>
+										<li class="active"><a href="About-Founder.html">About Founder</a></li>
 										
 										<li><a href="contact.html">contact</a></li>
 								   </ul>
@@ -156,10 +136,10 @@
 				Theme Inner Banner
 			============================================== 
 			-->
-			<div class="theme-inner-banner section-spacing" style="background: url(images/home/inner-banner-2.png) no-repeat center; background-size:cover;">
+			<div class="theme-inner-banner section-spacing" style="background: url(images/home/inner-banner-1.png) no-repeat center; background-size:cover;">
 				<div class="overlay">
 					<div class="container">
-						<h2 class="title">Why India??</h2>
+						<h2 class="title">Why India?</h2>
 					</div>
 				</div> <!-- /.overlay -->
 			</div> <!-- /.theme-inner-banner -->
@@ -167,34 +147,72 @@
 			
 
 
-			<!--
-			=====================================================
-				Contact us
-			=====================================================
+			<!-- 
+			=============================================
+				About Company
+			============================================== 
 			-->
-			<div class="contact-us-page section-spacing">
+			<div class="about-compnay section-spacing">
 				<div class="container">
-					<div class="title">
-						<h2>India: A Tapestry of Diversity, Unity, and Timeless Heritage</h2>
-						<p>India, a land of unparalleled diversity, stands as a beacon of unity amidst its rich cultural and historical heritage. With over 5,000 years of art, traditions, and philosophy, India is a living testament to resilience and creativity. </p>
-					</div>
-                    <div class="image-container">
-                        <img src="images/portfolio/1.jpg" alt="Image 1">
-                        <img src="images/portfolio/2.jpg" alt="Image 2">
-                        <img src="images/portfolio/3.jpg" alt="Image 3">
-                      </div>
-                    <br><br>
-					<p class="text">These values are intricately woven into every facet of life, from its vibrant culture to the exceptional products it offers to the world. This fusion is evident in India’s vast array of products, reflecting its unmatched heritage and creative strength.	</p>
-					<br>
-                    <p class="text">India’s sheer scale is remarkable:
-                        <br>
-                        Covering 2.4% of the world’s surface area while supporting 17.75% of its population.<br>
-                        Home to abundant natural resources, advanced technology, and a talented workforce.<br>
-                        A global leader in manufacturing, with an unmatched capability to produce diverse categories of goods.</p>
-                    
-				</div> <!-- /.container -->
+					<div class="theme-title-one">
+						<h2 class="title">India: A Tapestry of Diversity, Unity, and Timeless Heritage</h2>
+					</div> <!-- /.theme-title-one -->
+					<div class="row">
+						<div class="col-lg-6 col-12 wow fadeInLeft animated">
+							<div class="text-wrapper">
+								<p>India, a land of unparalleled diversity, stands as a beacon of unity amidst its rich cultural and historical heritage. With over 5,000 years of art, traditions, and philosophy, India is a living testament to resilience and creativity.  </p>
+								<p>These values are intricately woven into every facet of life, from its vibrant culture to the exceptional products it offers to the world. This fusion is evident in India’s vast array of products, reflecting its unmatched heritage and creative strength.	</p>
+								<p>India’s sheer scale is remarkable:
+                                    <br>
+									Covering 2.4% of the world’s surface area while supporting 17.75% of its population.<br>
+									Home to abundant natural resources, advanced technology, and a talented workforce.<br>
+									A global leader in manufacturing, with an unmatched capability to produce diverse categories of goods.</p>
+									<a href="about.html" class="theme-button-one">View More Info</a>
+							</div> <!-- /.text-wrapper -->
+						</div> <!-- /.col- -->
+						<div class="col-lg-6 col-12 wow fadeInRight animated">
+							<div class="about-feature">
+								<div class="row g-3">
+									<!-- Top Left Big Square -->
+									<div class="col-sm-6">
+										<div class="single-feature">
+											<img src="images/portfolio/1.jpg" class="img-fluid" style="width: 100%; height: auto;">
+										</div>
+									</div>
+						
+									<!-- Top Right Small Square -->
+									<div class="col-sm-6">
+										<div class="single-feature">
+											<img src="images/portfolio/1.jpg" class="img-fluid" style="width: 100%; height: auto;">
+										</div>
+									</div>
+						
+									<!-- Bottom Left Small Square -->
+									<div class="col-sm-6">
+										<div class="single-feature">
+											<img src="images/portfolio/1.jpg" class="img-fluid" style="width: 100%; height: auto;">
+										</div>
+									</div>
+						
+									<!-- Bottom Right Big Square -->
+									<div class="col-sm-6">
+										<div class="single-feature">
+											<img src="images/portfolio/1.jpg" class="img-fluid" style="width: 100%; height: auto;">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+						
 
-                <!--
+
+			
+
+
+			<!--
 			=====================================================
 				FAQ Section
 			=====================================================
@@ -267,30 +285,43 @@
 				</div> <!-- /.container -->
 			</div> <!-- /.faq-section -->
 
-				<!--Contact Form Validation Markup -->
-				<!-- Contact alert -->
-				<div class="alert-wrapper" id="alert-success">
-					<div id="success">
-						<button class="closeAlert"><i class="fa fa-times" aria-hidden="true"></i></button>
-						<div class="wrapper">
-			               	<p>Your message was sent successfully.</p>
-			             </div>
-			        </div>
-			    </div> <!-- End of .alert_wrapper -->
-			    <div class="alert-wrapper" id="alert-error">
-			        <div id="error">
-			           	<button class="closeAlert"><i class="fa fa-times" aria-hidden="true"></i></button>
-			           	<div class="wrapper">
-			               	<p>Sorry!Something Went Wrong.</p>
-			            </div>
-			        </div>
-			    </div> <!-- End of .alert_wrapper -->
-			</div> <!-- /.contact-us-page -->
 
 
-			<div class="google-map">
-				<div class="map-canvas" style="height: 400px; width: 100%;"></div> <!-- Set the height and width -->
-			</div>
+			
+
+
+           <br><br>
+			<!--
+			=====================================================
+				Call Back Form One
+			=====================================================
+			-->
+			<div class="call-back-form-one section-spacing">
+				<div class="container">
+					<div class="theme-title-one text-center">
+						<h2 class="title">Request a Call Back</h2>
+					</div> <!-- /.theme-title-one -->
+					<form action="#">
+						<div class="row">
+							<div class="col-lg-4 col-md-6 col-12"><input type="text" placeholder="Name"></div>
+							<div class="col-lg-4 col-md-6 col-12"><input type="email" placeholder="Email"></div>
+							<div class="col-lg-4 col-12"><input type="text" placeholder="Phone"></div>
+							<div class="col-lg-4 col-12">
+								<select class="form-control" id="exampleSelect1">
+									<option>I would like to discuss</option>
+									<option>Import Services</option>
+									<option>Export Services</option>
+									<option>Logistics and Shipping</option>
+									<option>Customs Clearance</option>
+								</select>
+								<input type="text" placeholder="Any Other Topic ">
+							</div>
+							<div class="col-lg-8 col-12"><textarea placeholder="Your Words"></textarea></div>
+						</div>
+						<button class="theme-button-one">Submit</button>
+					</form>
+				</div> <!-- /.container -->
+			</div> <!-- /.call-back-form-one -->
 
 
 
@@ -345,7 +376,7 @@
 									<li class="clearfix">
 										<img src="images/blog/4.jpg" alt="">
 										<div class="text">
-											<p>"Fantastic service! Elements of India made our imports from India effortless. Highly recommend!" <span>Mark Wilson</span></p>
+											<p>"Fantastic service!Elements of India made our imports from India effortless. Highly recommend!" <span>Mark Wilson</span></p>
 											<div class="date"><i class="icon flaticon-clock"></i> May 25, 2018</div>
 										</div>
 									</li>
@@ -428,72 +459,9 @@
 		<script type="text/javascript" src="vendor/time-picker/jquery.timepicker.min.js"></script>
 		<!-- ui js -->
 		<script type="text/javascript" src="vendor/jquery-ui/jquery-ui.min.js"></script>
-		<!-- Validation -->
-		<script type="text/javascript" src="vendor/contact-form/validate.js"></script>
-		<script type="text/javascript" src="vendor/contact-form/jquery.form.js"></script>
-		<!-- Google map js -->
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjQLCCbRKFhsr8BY78g2PQ0_bTyrm_YXU"></script>
-		<script src="vendor/sanzzy-map/dist/snazzy-info-window.min.js"></script>
 
 		<!-- Theme js -->
 		<script src="js/theme.js"></script>
-		<script src="js/map-script.js"></script>
 		</div> <!-- /.main-page-wrapper -->
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script>
-$(document).ready(function() {
-	$('#contactForm').on('submit', function(e) {
-	  e.preventDefault();
-	  
-	  var name = $('#name').val();
-	  var phone = $('#phone').val();
-	  var message = $('#message').val();
-	  var email = $('#email').val();
-	  var subjects = $('#subjects').val();
-      $.ajax({
-        url: 'https://script.google.com/macros/s/AKfycbyboRfZQdKqv8WIYctVXYRaLk_N-UxcO66mpiYALfjT6_zXe8l7HTKaUK3BDxxmfV_G/exec',
-        method: 'POST',
-        data: {
-          name: name,
-          email: email,
-          subject: subjects,
-          message: message
-        },
-        success: function(response) {
-          toastr.success('Form submitted successfully!');
-          setTimeout(function() {
-            window.location.href = 'https://consulting.biz499.in/contact.html';
-          }, 3000);
-        },
-        error: function() {
-          toastr.error('There was an error submitting the form. Please try again.');
-        }
-      });
-    });
-  });
-
-  toastr.options = {
-    "closeButton": true,
-    "debug": false,
-    "newestOnTop": false,
-    "progressBar": false,
-    "positionClass": "toast-top-full-width",
-    "preventDuplicates": false,
-    "onclick": null,
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "5000",
-    "extendedTimeOut": "1000",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-  };
-</script>
-
 	</body>
 </html>
