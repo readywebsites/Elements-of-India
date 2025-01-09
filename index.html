@@ -581,37 +581,41 @@
 			</div> <!-- /.partner-section-one -->
 
 
-			<!--
-			=====================================================
-				Call Back Form One
-			=====================================================
-			-->
 			<div class="call-back-form-one section-spacing">
 				<div class="container">
 					<div class="theme-title-one text-center">
 						<h2 class="title">Request a Call Back</h2>
-					</div> <!-- /.theme-title-one -->
-					<form action="#">
+					</div>
+					<form id="callbackForm">
 						<div class="row">
-							<div class="col-lg-4 col-md-6 col-12"><input type="text" placeholder="Name"></div>
-							<div class="col-lg-4 col-md-6 col-12"><input type="email" placeholder="Email"></div>
-							<div class="col-lg-4 col-12"><input type="text" placeholder="Phone"></div>
+							<div class="col-lg-4 col-md-6 col-12">
+								<input type="text" id="name" placeholder="Name">
+							</div>
+							<div class="col-lg-4 col-md-6 col-12">
+								<input type="email" id="email" placeholder="Email">
+							</div>
 							<div class="col-lg-4 col-12">
-								<select class="form-control" id="exampleSelect1">
+								<input type="text" id="phone" placeholder="Phone">
+							</div>
+							<div class="col-lg-4 col-12">
+								<select class="form-control" id="discussionTopic">
 									<option>I would like to discuss</option>
 									<option>Import Services</option>
 									<option>Export Services</option>
 									<option>Logistics and Shipping</option>
 									<option>Customs Clearance</option>
 								</select>
-								<input type="text" placeholder="Any Other Topic ">
+								<input type="text" id="otherTopic" placeholder="Any Other Topic ">
 							</div>
-							<div class="col-lg-8 col-12"><textarea placeholder="Your Words"></textarea></div>
+							<div class="col-lg-8 col-12">
+								<textarea id="message" placeholder="Your Words"></textarea>
+							</div>
 						</div>
-						<button class="theme-button-one">Submit</button>
+						<button type="submit" class="theme-button-one">Submit</button>
 					</form>
-				</div> <!-- /.container -->
-			</div> <!-- /.call-back-form-one -->
+				</div>
+			</div>
+			
 
 
 			<!--
@@ -863,5 +867,43 @@
 				});
 			});
 		</script>
+		<script>
+			document.getElementById("callbackForm").addEventListener("submit", async function (e) {
+				e.preventDefault(); // Prevent the default form submission behavior.
+		
+				// Collect form values
+				const name = document.getElementById("name").value;
+				const email = document.getElementById("email").value;
+				const phone = document.getElementById("phone").value;
+				const discussionTopic = document.getElementById("discussionTopic").value;
+				const otherTopic = document.getElementById("otherTopic").value;
+				const message = document.getElementById("message").value;
+		
+				// Your Google Apps Script Web App URL
+				const scriptURL = "YOUR_WEB_APP_URL";
+		
+				// Send the data to Google Sheets
+				const response = await fetch(scriptURL, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						name,
+						email,
+						phone,
+						discussionTopic,
+						otherTopic,
+						message,
+					}),
+				});
+		
+				// Handle the response
+				const result = await response.json();
+				if (result.status === "success") {
+					alert("Your request has been submitted successfully!");
+				} else {
+					alert("There was an error submitting your request. Please try again.");
+				}
+			});
+		</script>		
 	</body>
 </html>
