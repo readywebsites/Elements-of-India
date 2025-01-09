@@ -603,6 +603,7 @@
 							</div>
 							<div class="col-lg-8 col-12"><textarea id="message" placeholder="Your Words"></textarea></div>
 						</div>
+					
 						<button type="submit" class="theme-button-one">Submit</button>
 					</form>
 				</div> <!-- /.container -->
@@ -890,7 +891,11 @@
 					message,
 				  }),
 				});
-		  
+		        if (!name || !email || !phone) {
+					alert("Please fill in all required fields.");
+					return;
+				}
+
 				const result = await response.json();
 				if (result.status === "success") {
 				  alert("Your request has been submitted successfully!");
