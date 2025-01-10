@@ -23,10 +23,7 @@
 		<!-- Theme-Color css -->
 		<link rel="stylesheet" id="jssDefault" href="css/color.css">
 
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-
+		
 
 	</head>
 
@@ -597,7 +594,7 @@
 								<input type="text" id="phone" name="phone" placeholder="Phone" required>
 							</div>
 							<div class="col-lg-4 col-12">
-								<select class="form-control" id="discussionTopic" name="discussionTopic">
+								<select class="form-control" id="discussionTopic" name="discussionTopic" required>
 									<option value="" disabled selected>I would like to discuss</option>
 									<option value="Import Services">Import Services</option>
 									<option value="Export Services">Export Services</option>
@@ -607,13 +604,14 @@
 								<input type="text" id="otherTopic" name="otherTopic" placeholder="Any Other Topic">
 							</div>
 							<div class="col-lg-8 col-12">
-								<textarea id="message" name="message" placeholder="Your Words"></textarea>
+								<textarea id="message" name="message" placeholder="Your Words" required></textarea>
 							</div>
 						</div>
 						<button type="submit" class="theme-button-one">Submit</button>
 					</form>
 				</div> <!-- /.container -->
 			</div> <!-- /.call-back-form-one -->
+			
 			
 			
 			  
@@ -869,24 +867,12 @@
 				});
 			});
 		</script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+		
 		<script>
 			$(document).ready(function() {
-				// Monitor changes in the DOM for a specific element
-				const targetNode = document.getElementById('contactForm');
-				if (targetNode) {
-					const observer = new MutationObserver((mutationsList) => {
-						for (const mutation of mutationsList) {
-							if (mutation.type === 'childList') {
-								console.log('Child nodes of #contactForm changed!');
-							}
-						}
-					});
-		
-					observer.observe(targetNode, { childList: true, subtree: true }); // Added subtree if needed
-				} else {
-					console.error('Element with ID "contactForm" not found!');
-				}
-		
 				// Handle form submission
 				$('#contactForm').on('submit', function(e) {
 					e.preventDefault();
@@ -894,21 +880,24 @@
 					var name = $('#name').val();
 					var email = $('#email').val();
 					var phone = $('#phone').val();
-					var subject = $('#discussionTopic').val();
-					var subject = $('#otherTopic').val();
+					var discussionTopic = $('#discussionTopic').val(); // Get discussion topic
+					var otherTopic = $('#otherTopic').val(); // Get other topic if filled
 					var message = $('#message').val();
+		
+					// Prepare data for submission
+					var data = {
+						name: name,
+						email: email,
+						phone: phone,
+						discussionTopic: discussionTopic,
+						otherTopic: otherTopic,
+						message: message
+					};
 		
 					$.ajax({
 						url: 'https://script.google.com/macros/s/AKfycbzVbGF23x0oE7wnf-U_XM3xm9668Ykav7-3DzRg0z67icxrSxCkKJPrHjENDwEQefV0/exec', 
 						method: 'POST',
-						data: {
-							name: name,
-							email: email,
-							phone: phone,
-							discussionTopic: discussionTopic,
-							otherTopic: otherTopic,
-							message: message
-						},
+						data: data,
 						success: function(response) {
 							if (response.result === 'success') {
 								toastr.success('Form submitted successfully!');
@@ -946,7 +935,7 @@
 				}
 			});
 		</script>
-
+		
 		
 	</body>
 </html>
