@@ -862,49 +862,59 @@
 				});
 			});
 		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 		<script>
-			document.getElementById("callbackForm").addEventListener("submit", async function (e) {
-			  e.preventDefault(); // Prevent default form submission
-		  
-			  // Collect form values
-			  const name = document.getElementById("name").value;
-			  const email = document.getElementById("email").value;
-			  const phone = document.getElementById("phone").value;
-			  const discussionTopic = document.getElementById("discussionTopic").value;
-			  const otherTopic = document.getElementById("otherTopic").value;
-			  const message = document.getElementById("message").value;
-		  
-			  // Your Google Apps Script Web App URL
-			  const scriptURL = "https://script.google.com/macros/s/AKfycbwcJaBUWBOCBz23sFvv3ndd1nJ7jGZfW0T11dxG67uBDkY5Te7BoRELWZ-44Kv06Nbi/exec";
-		  
-			  try {
-				// Send data to Google Sheets
-				const response = await fetch(scriptURL, {
-				  method: "POST",
-				  headers: { "Content-Type": "application/json" },
-				  body: JSON.stringify({
-					name,
-					email,
-					phone,
-					discussionTopic,
-					otherTopic,
-					message,
-				  }),
-				});
-		  
-				const result = await response.json();
-				if (result.status === "success") {
-				  alert("Your request has been submitted successfully!");
-				} else {
-				  alert("There was an error submitting your request. Please try again.");
+		  $(document).ready(function() {
+			$('#contactForm').on('submit', function(e) {
+			  e.preventDefault();
+			  
+			  var name = $('#name').val();
+			  var email = $('#email').val();
+			  var phone = $('#phone').val();
+			  var subject = $('#discussionTopic').val();
+			  var message = $('#otherTopic').val();
+			  var message = $('#message').val();
+	  
+			  $.ajax({
+				url: 'https://script.google.com/macros/s/AKfycbzVbGF23x0oE7wnf-U_XM3xm9668Ykav7-3DzRg0z67icxrSxCkKJPrHjENDwEQefV0/exec', // Replace with your Google Apps Script URL
+				method: 'POST',
+				data: {
+				  name: name,
+				  email: email,
+				  phone: phone,
+				  subject: subject,
+				  message: message
+				},
+				success: function(response) {
+				  toastr.success('Form submitted successfully!');
+				  setTimeout(function() {
+					window.location.href = 'https://element.biz499.in/';
+				  }, 3000);
+				},
+				error: function() {
+				  toastr.error('There was an error submitting the form. Please try again.');
 				}
-			  } catch (error) {
-				console.error("Error!", error.message);
-				alert("There was a network issue. Please try again.");
-			  }
-			});
-		  </script>
-		  
-		  
+			  });
+			  });
+				});
+			
+				toastr.options = {
+				"closeButton": true,
+				"debug": false,
+				"newestOnTop": false,
+				"progressBar": false,
+				"positionClass": "toast-top-full-width",
+				"preventDuplicates": false,
+				"onclick": null,
+				"showDuration": "300",
+				"hideDuration": "1000",
+				"timeOut": "5000",
+				"extendedTimeOut": "1000",
+				"showEasing": "swing",
+				"hideEasing": "linear",
+				"showMethod": "fadeIn",
+				"hideMethod": "fadeOut"
+			 }
+    </script>
 	</body>
 </html>
