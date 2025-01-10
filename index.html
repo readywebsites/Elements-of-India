@@ -579,60 +579,40 @@
 			</div> <!-- /.partner-section-one -->
 
 
-			<form id="contactForm" class="row ">
-				<div class="col-md-12">
-				  <h2>Give Us A Message</h2>
-				  <p>Our dedicated team of experts is here to guide you through every step of the insurance journey, ensuring you make informed choices tailored to your unique needs. </p>
-				</div>
-				<div class="col-md-6">
-				  <div class="input_feild">
-					<input type="text" id="name"  class="form-control name" placeholder="Name">
-					<div class="icon">
-					  <i class="ensurx-user"></i>
-					</div>
-				  </div>
-				</div>
-				<div class="col-md-6">
-				  <div class="input_feild">
-					<input type="email" id="email" class="form-control email" placeholder="E-mail">
-					<div class="icon">
-					  <i class="ensurx-footer-mail"></i>
-					</div>
-				  </div>
-				</div>
-
-				<div class="col-md-6">
-				  <div class="input_feild">
-					<input type="text" id="phone"  class="form-control phone" placeholder="Phone">
-					<div class="icon">
-					  <i class="ensurx-call"></i>
-					</div>
-				  </div>
-				</div>
-				
-				<div class="col-md-6">
-					<select id="subject" class="form-select form-control">
-					  <option value="" disabled selected>Subject</option>
-					  <option value="Option 1">Option 1</option>
-					  <option value="Option 2">Option 2</option>
-					</select>
-				  </div>
-				
-				  <div class="col-12">
-				  <div class="textarea_feild">
-					<textarea id="message" placeholder="Message" class="form-control"></textarea>
-					<div class="icon">
-					  <i class="ensurx-pen"></i>
-					</div>
-				  </div>
-				  </div>
-				  <div class="col-md-12">
-					<button type="submit" class="common_btn">Submit Now <i class="ensurx-arrow-right"></i></button>
-				  </div>
-
-			</form>
-
-
+			<div class="call-back-form-one section-spacing">
+				<div class="container">
+					<div class="theme-title-one text-center">
+						<h2 class="title">Request a Call Back</h2>
+					</div> <!-- /.theme-title-one -->
+					<form id="contactForm"> <!-- Updated id to match the script -->
+						<div class="row">
+							<div class="col-lg-4 col-md-6 col-12">
+								<input type="text" id="name" name="name" placeholder="Name" required>
+							</div>
+							<div class="col-lg-4 col-md-6 col-12">
+								<input type="email" id="email" name="email" placeholder="Email" required>
+							</div>
+							<div class="col-lg-4 col-12">
+								<input type="text" id="phone" name="phone" placeholder="Phone" required>
+							</div>
+							<div class="col-lg-4 col-12">
+								<select class="form-control" id="discussionTopic" name="discussionTopic">
+									<option value="" disabled selected>I would like to discuss</option>
+									<option value="Import Services">Import Services</option>
+									<option value="Export Services">Export Services</option>
+									<option value="Logistics and Shipping">Logistics and Shipping</option>
+									<option value="Customs Clearance">Customs Clearance</option>
+								</select>
+								<input type="text" id="otherTopic" name="otherTopic" placeholder="Any Other Topic">
+							</div>
+							<div class="col-lg-8 col-12">
+								<textarea id="message" name="message" placeholder="Your Words"></textarea>
+							</div>
+						</div>
+						<button type="submit" class="theme-button-one">Submit</button>
+					</form>
+				</div> <!-- /.container -->
+			</div> <!-- /.call-back-form-one -->
 			
 			
 			  
@@ -888,74 +868,79 @@
 				});
 			});
 		</script>
-		<script>
-			$(document).ready(function () {
-				console.log("Script initialized");
 		
-				$('#contactForm').on('submit', function (e) {
-					e.preventDefault();
-					console.log('Form submitted');
-		
-					var name = $('#name').val();
-					var email = $('#email').val();
-					var phone = $('#phone').val();
-					var discussionTopic = $('#discussionTopic').val();
-					var otherTopic = $('#otherTopic').val();
-					var message = $('#message').val();
-		
-					console.log({
-						name: name,
-						email: email,
-						phone: phone,
-						discussionTopic: discussionTopic,
-						otherTopic: otherTopic,
-						message: message
-					});
-		
-					$.ajax({
-						url: 'https://script.google.com/macros/s/AKfycbzVbGF23x0oE7wnf-U_XM3xm9668Ykav7-3DzRg0z67icxrSxCkKJPrHjENDwEQefV0/exec', // Replace with your Google Apps Script URL
-						method: 'POST',
-						data: {
-							name: name,
-							email: email,
-							phone: phone,
-							discussionTopic: discussionTopic,
-							otherTopic: otherTopic,
-							message: message
-						},
-						success: function (response) {
-							console.log('Success response:', response);
-							toastr.success('Form submitted successfully!');
-							setTimeout(function () {
-								window.location.href = 'https://element.biz499.in/';
-							}, 3000);
-						},
-						error: function (xhr, status, error) {
-							console.error('Error response:', error);
-							toastr.error('There was an error submitting the form. Please try again.');
-						}
-					});
-				});
-		
-				toastr.options = {
-					"closeButton": true,
-					"debug": false,
-					"newestOnTop": false,
-					"progressBar": false,
-					"positionClass": "toast-top-full-width",
-					"preventDuplicates": false,
-					"onclick": null,
-					"showDuration": "300",
-					"hideDuration": "1000",
-					"timeOut": "5000",
-					"extendedTimeOut": "1000",
-					"showEasing": "swing",
-					"hideEasing": "linear",
-					"showMethod": "fadeIn",
-					"hideMethod": "fadeOut"
-				};
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+	$(document).ready(function() {
+		// Monitor changes in the DOM for a specific element
+		const targetNode = document.getElementById('contactForm');
+		if (targetNode) {
+			const observer = new MutationObserver((mutationsList) => {
+				for (const mutation of mutationsList) {
+					if (mutation.type === 'childList') {
+						console.log('Child nodes of #contactForm changed!');
+					}
+				}
 			});
-		</script>
+
+			observer.observe(targetNode, { childList: true });
+		} else {
+			console.error('Element with ID "contactForm" not found!');
+		}
+
+		// Handle form submission
+		$('#contactForm').on('submit', function(e) {
+			e.preventDefault();
+
+			var name = $('#name').val();
+			var email = $('#email').val();
+			var phone = $('#phone').val();
+			var subject = $('#subject').val();
+			var message = $('#message').val();
+
+			$.ajax({
+				url: 'https://script.google.com/macros/s/AKfycbzVbGF23x0oE7wnf-U_XM3xm9668Ykav7-3DzRg0z67icxrSxCkKJPrHjENDwEQefV0/exec', // Replace with your Google Apps Script URL
+				method: 'POST',
+				data: {
+					name: name,
+					email: email,
+					phone: phone,
+					subject: subject,
+					message: message
+				},
+				success: function(response) {
+					toastr.success('Form submitted successfully!');
+					setTimeout(function() {
+						window.location.href = 'https://element.biz499.in/';
+					}, 3000);
+				},
+				error: function() {
+					toastr.error('There was an error submitting the form. Please try again.');
+				}
+			});
+		});
+
+		// Toastr configuration
+		toastr.options = {
+			"closeButton": true,
+			"debug": false,
+			"newestOnTop": false,
+			"progressBar": false,
+			"positionClass": "toast-top-full-width",
+			"preventDuplicates": false,
+			"onclick": null,
+			"showDuration": "300",
+			"hideDuration": "1000",
+			"timeOut": "5000",
+			"extendedTimeOut": "1000",
+			"showEasing": "swing",
+			"hideEasing": "linear",
+			"showMethod": "fadeIn",
+			"hideMethod": "fadeOut"
+		}
+	});
+	</script>
+
 		
 	</body>
 </html>
