@@ -580,7 +580,7 @@
 			<div class="call-back-form-one section-spacing">
 				<div class="container">
 					<div class="theme-title-one text-center">
-						<h2 class="title">Request a Call Back</h2>
+						<h2 class="title">Call  Back</h2>
 					</div> <!-- /.theme-title-one -->
 					<form id="contactForm"> <!-- Updated id to match the script -->
 						<div class="row">
@@ -875,39 +875,40 @@
 		<script>
 			$(document).ready(function() {
 			$('#contactForm').on('submit', function(e) {
-				e.preventDefault();
+			e.preventDefault();
 
-				var data = {
-				name: $('#name').val(),
-				email: $('#email').val(),
-				phone: $('#phone').val(),
-				discussionTopic: $('#discussionTopic').val(),
-				otherTopic: $('#otherTopic').val(),
-				message: $('#message').val()
-				};
+			var data = {
+			name: $('#name').val(),
+			email: $('#email').val(),
+			phone: $('#phone').val(),
+			discussionTopic: $('#discussionTopic').val(),
+			otherTopic: $('#otherTopic').val(),
+			message: $('#message').val()
+			};
 
-				$.ajax({
-				url: 'https://script.google.com/macros/s/AKfycbxZWhP7O3V6yHpDUjcGp5M2_Zu6OX5HpPLyi6U1rgnF1jH0TMz5HY-NIrO3y_I1it8O/exec', // Replace with your deployed URL
-				method: 'POST',
-				contentType: 'application/json',
-				data: JSON.stringify(data),
-				success: function(response) {
-					if (response.result === 'success') {
-					toastr.success('Form submitted successfully!');
-					setTimeout(function() {
-						window.location.href = 'https://element.biz499.in/';
-					}, 3000);
-					} else {
-					toastr.error('Failed to submit the form. Please try again.');
-					}
-				},
-				error: function(xhr, status, error) {
-					console.error(`Error: ${status} - ${error}`);
-					toastr.error('There was an error submitting the form. Please try again.');
+			$.ajax({
+			url: 'https://script.google.com/macros/s/AKfycbwbQ7b1ibakMAhA31FxxpP_SXl4483YaYfTQM3ERsv55GyCnZtEwUHqFidcvlycqw/exec', // Replace with your deployed URL
+			method: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify(data),
+			success: function(response) {
+				if (response.result === 'success') {
+				toastr.success('Form submitted successfully!');
+				setTimeout(function() {
+					window.location.href = 'https://element.biz499.in/';
+				}, 3000);
+				} else {
+				toastr.error('Failed to submit the form. Please try again.');
 				}
-				});
+			},
+			error: function(xhr, status, error) {
+				console.error(`Error: ${status} - ${error}`);
+				toastr.error('There was an error submitting the form. Please try again.');
+			}
 			});
 			});
+			});
+
 
 		
 				toastr.options = {
