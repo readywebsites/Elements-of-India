@@ -877,27 +877,20 @@
 				$('#contactForm').on('submit', function(e) {
 					e.preventDefault();
 		
-					var name = $('#name').val();
-					var email = $('#email').val();
-					var phone = $('#phone').val();
-					var discussionTopic = $('#discussionTopic').val();
-					var otherTopic = $('#otherTopic').val();
-					var message = $('#message').val();
-		
 					var data = {
-						name: name,
-						email: email,
-						phone: phone,
-						discussionTopic: discussionTopic,
-						otherTopic: otherTopic,
-						message: message
+						name: $('#name').val(),
+						email: $('#email').val(),
+						phone: $('#phone').val(),
+						discussionTopic: $('#discussionTopic').val(),
+						otherTopic: $('#otherTopic').val(),
+						message: $('#message').val()
 					};
 		
 					$.ajax({
-						url: 'https://script.google.com/macros/s/AKfycbzrws4eHdjOOfpxx4f70ZSegWQs8bff-MHkNoxaTTd194QFL3Mtuz0ET3QQ-ZlC_5lc/exec',
+						url: 'https://script.google.com/macros/s/AKfycbz-plOFs0Z1w_6y6oCbTd0-hzhrFVmlMqKIPQ3SrdTOYeNvlnbpVrh4nItrWALCVQwl/exec',
 						method: 'POST',
-						data: JSON.stringify(data), // Ensure the data is sent as JSON
-						contentType: 'application/json', // Set content type
+						data: JSON.stringify(data),
+						contentType: 'application/json',
 						success: function(response) {
 							if (response.result === 'success') {
 								toastr.success('Form submitted successfully!');
@@ -922,6 +915,8 @@
 				};
 			});
 		</script>
+		
+		
 		
 		
 		
