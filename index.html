@@ -874,46 +874,47 @@
 		
 		<script>
 			$(document).ready(function() {
-				$('#contactForm').on('submit', function(e) {
-					e.preventDefault();
-		
-					var data = {
-						name: $('#name').val(),
-						email: $('#email').val(),
-						phone: $('#phone').val(),
-						discussionTopic: $('#discussionTopic').val(),
-						otherTopic: $('#otherTopic').val(),
-						message: $('#message').val()
-					};
-		
-					$.ajax({
-						url: 'https://script.google.com/macros/s/AKfycbwHR6tDOBvEAH3b87GpsTSQJGWBJJjrauxDgpFCwKd2JmFmzGZDxUukVt5UweZoBV8_/exec',
-						method: 'POST',
-						data: JSON.stringify(data),
-						contentType: 'application/json',
-						success: function(response) {
-							if (response.result === 'success') {
-								toastr.success('Form submitted successfully!');
-								setTimeout(function() {
-									window.location.href = 'https://element.biz499.in/';
-								}, 3000);
-							} else {
-								toastr.error('Failed to submit the form. Please try again.');
-							}
-						},
-						error: function(xhr, status, error) {
-							console.error(`Error: ${status} - ${error}`);
-							toastr.error('There was an error submitting the form. Please try again.');
-						}
-					});
+			$('#contactForm').on('submit', function(e) {
+				e.preventDefault();
+
+				var data = {
+				name: $('#name').val(),
+				email: $('#email').val(),
+				phone: $('#phone').val(),
+				discussionTopic: $('#discussionTopic').val(),
+				otherTopic: $('#otherTopic').val(),
+				message: $('#message').val()
+				};
+
+				$.ajax({
+				url: 'https://script.google.com/macros/s/AKfycbxZWhP7O3V6yHpDUjcGp5M2_Zu6OX5HpPLyi6U1rgnF1jH0TMz5HY-NIrO3y_I1it8O/exec', // Replace with your deployed URL
+				method: 'POST',
+				contentType: 'application/json',
+				data: JSON.stringify(data),
+				success: function(response) {
+					if (response.result === 'success') {
+					toastr.success('Form submitted successfully!');
+					setTimeout(function() {
+						window.location.href = 'https://element.biz499.in/';
+					}, 3000);
+					} else {
+					toastr.error('Failed to submit the form. Please try again.');
+					}
+				},
+				error: function(xhr, status, error) {
+					console.error(`Error: ${status} - ${error}`);
+					toastr.error('There was an error submitting the form. Please try again.');
+				}
 				});
+			});
+			});
+
 		
 				toastr.options = {
 					"closeButton": true,
 					"positionClass": "toast-top-full-width",
 					"timeOut": "5000",
 				};
-			});
 		</script>
 		
 		
