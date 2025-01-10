@@ -584,30 +584,38 @@
 			<div class="call-back-form-one section-spacing">
 				<div class="container">
 					<div class="theme-title-one text-center">
-						<h2 class="title">Request a Call Back</h2>
+						<h2 class="title">Call Back</h2>
 					</div> <!-- /.theme-title-one -->
-					<form id="callbackForm">
+					<form id="contactForm"> <!-- Updated id to match the script -->
 						<div class="row">
-							<div class="col-lg-4 col-md-6 col-12"><input type="text" id="name" placeholder="Name"></div>
-							<div class="col-lg-4 col-md-6 col-12"><input type="email" id="email" placeholder="Email"></div>
-							<div class="col-lg-4 col-12"><input type="text" id="phone" placeholder="Phone"></div>
-							<div class="col-lg-4 col-12">
-								<select class="form-control" id="discussionTopic">
-									<option>I would like to discuss</option>
-									<option>Import Services</option>
-									<option>Export Services</option>
-									<option>Logistics and Shipping</option>
-									<option>Customs Clearance</option>
-								</select>
-								<input type="text" id="otherTopic" placeholder="Any Other Topic">
+							<div class="col-lg-4 col-md-6 col-12">
+								<input type="text" id="name" name="name" placeholder="Name" required>
 							</div>
-							<div class="col-lg-8 col-12"><textarea id="message" placeholder="Your Words"></textarea></div>
+							<div class="col-lg-4 col-md-6 col-12">
+								<input type="email" id="email" name="email" placeholder="Email" required>
+							</div>
+							<div class="col-lg-4 col-12">
+								<input type="text" id="phone" name="phone" placeholder="Phone" required>
+							</div>
+							<div class="col-lg-4 col-12">
+								<select class="form-control" id="discussionTopic" name="discussionTopic">
+									<option value="" disabled selected>I would like to discuss</option>
+									<option value="Import Services">Import Services</option>
+									<option value="Export Services">Export Services</option>
+									<option value="Logistics and Shipping">Logistics and Shipping</option>
+									<option value="Customs Clearance">Customs Clearance</option>
+								</select>
+								<input type="text" id="otherTopic" name="otherTopic" placeholder="Any Other Topic">
+							</div>
+							<div class="col-lg-8 col-12">
+								<textarea id="message" name="message" placeholder="Your Words"></textarea>
+							</div>
 						</div>
-					
 						<button type="submit" class="theme-button-one">Submit</button>
 					</form>
 				</div> <!-- /.container -->
 			</div> <!-- /.call-back-form-one -->
+			
 			
 			  
 			
@@ -882,7 +890,8 @@
 				  name: name,
 				  email: email,
 				  phone: phone,
-				  subject: subject,
+				  discussionTopic: discussionTopic,
+				  otherTopic: otherTopic,
 				  message: message
 				},
 				success: function(response) {
@@ -914,7 +923,7 @@
 				"hideEasing": "linear",
 				"showMethod": "fadeIn",
 				"hideMethod": "fadeOut"
-			 }
-    </script>
+			}
+    </script>
 	</body>
 </html>
