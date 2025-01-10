@@ -24,8 +24,9 @@
 		<link rel="stylesheet" id="jssDefault" href="css/color.css">
 
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
 
 	</head>
 
@@ -582,7 +583,7 @@
 			<div class="call-back-form-one section-spacing">
 				<div class="container">
 					<div class="theme-title-one text-center">
-						<h2 class="title">Request a Call Back</h2>
+						<h2 class="title"> Call Back</h2>
 					</div> <!-- /.theme-title-one -->
 					<form id="contactForm"> <!-- Updated id to match the script -->
 						<div class="row">
@@ -868,78 +869,83 @@
 				});
 			});
 		</script>
+		<script>
+			$(document).ready(function() {
+				// Monitor changes in the DOM for a specific element
+				const targetNode = document.getElementById('contactForm');
+				if (targetNode) {
+					const observer = new MutationObserver((mutationsList) => {
+						for (const mutation of mutationsList) {
+							if (mutation.type === 'childList') {
+								console.log('Child nodes of #contactForm changed!');
+							}
+						}
+					});
 		
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script>
-	$(document).ready(function() {
-		// Monitor changes in the DOM for a specific element
-		const targetNode = document.getElementById('contactForm');
-		if (targetNode) {
-			const observer = new MutationObserver((mutationsList) => {
-				for (const mutation of mutationsList) {
-					if (mutation.type === 'childList') {
-						console.log('Child nodes of #contactForm changed!');
-					}
+					observer.observe(targetNode, { childList: true, subtree: true }); // Added subtree if needed
+				} else {
+					console.error('Element with ID "contactForm" not found!');
+				}
+		
+				// Handle form submission
+				$('#contactForm').on('submit', function(e) {
+					e.preventDefault();
+		
+					var name = $('#name').val();
+					var email = $('#email').val();
+					var phone = $('#phone').val();
+					var subject = $('#discussionTopic').val();
+					var subject = $('#otherTopic').val();
+					var message = $('#message').val();
+		
+					$.ajax({
+						url: 'https://script.google.com/macros/s/AKfycbzVbGF23x0oE7wnf-U_XM3xm9668Ykav7-3DzRg0z67icxrSxCkKJPrHjENDwEQefV0/exec', 
+						method: 'POST',
+						data: {
+							name: name,
+							email: email,
+							phone: phone,
+							discussionTopic: discussionTopic,
+							otherTopic: otherTopic,
+							message: message
+						},
+						success: function(response) {
+							if (response.result === 'success') {
+								toastr.success('Form submitted successfully!');
+								setTimeout(function() {
+									window.location.href = 'https://element.biz499.in/';
+								}, 3000);
+							} else {
+								toastr.error('Failed to submit the form. Please try again.');
+							}
+						},
+						error: function(xhr, status, error) {
+							console.error(`Error: ${status} - ${error}`);
+							toastr.error('There was an error submitting the form. Please try again.');
+						}
+					});
+				});
+		
+				// Toastr configuration
+				toastr.options = {
+					"closeButton": true,
+					"debug": false,
+					"newestOnTop": false,
+					"progressBar": false,
+					"positionClass": "toast-top-full-width",
+					"preventDuplicates": false,
+					"onclick": null,
+					"showDuration": "300",
+					"hideDuration": "1000",
+					"timeOut": "5000",
+					"extendedTimeOut": "1000",
+					"showEasing": "swing",
+					"hideEasing": "linear",
+					"showMethod": "fadeIn",
+					"hideMethod": "fadeOut"
 				}
 			});
-
-			observer.observe(targetNode, { childList: true });
-		} else {
-			console.error('Element with ID "contactForm" not found!');
-		}
-
-		// Handle form submission
-		$('#contactForm').on('submit', function(e) {
-			e.preventDefault();
-
-			var name = $('#name').val();
-			var email = $('#email').val();
-			var phone = $('#phone').val();
-			var subject = $('#subject').val();
-			var message = $('#message').val();
-
-			$.ajax({
-				url: 'https://script.google.com/macros/s/AKfycbzVbGF23x0oE7wnf-U_XM3xm9668Ykav7-3DzRg0z67icxrSxCkKJPrHjENDwEQefV0/exec', // Replace with your Google Apps Script URL
-				method: 'POST',
-				data: {
-					name: name,
-					email: email,
-					phone: phone,
-					subject: subject,
-					message: message
-				},
-				success: function(response) {
-					toastr.success('Form submitted successfully!');
-					setTimeout(function() {
-						window.location.href = 'https://element.biz499.in/';
-					}, 3000);
-				},
-				error: function() {
-					toastr.error('There was an error submitting the form. Please try again.');
-				}
-			});
-		});
-
-		// Toastr configuration
-		toastr.options = {
-			"closeButton": true,
-			"debug": false,
-			"newestOnTop": false,
-			"progressBar": false,
-			"positionClass": "toast-top-full-width",
-			"preventDuplicates": false,
-			"onclick": null,
-			"showDuration": "300",
-			"hideDuration": "1000",
-			"timeOut": "5000",
-			"extendedTimeOut": "1000",
-			"showEasing": "swing",
-			"hideEasing": "linear",
-			"showMethod": "fadeIn",
-			"hideMethod": "fadeOut"
-		}
-	});
-	</script>
+		</script>
 
 		
 	</body>
